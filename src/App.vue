@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <Header />
+    <List />
+    <Cart />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Header from "./components/Header.vue";
+import List from "./components/List.vue";
+import Cart from "./components/Cart.vue";
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      cart: [1],
+      products: [10, 20],
+      currency: "VGTB",
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    List,
+    Cart,
+  },
+};
 </script>
 
-<style lang="scss">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
