@@ -4,7 +4,12 @@
     <img class="card-image" :src="product.image" alt="" />
     <p class="card-price">Цена: {{ product.price }} {{ currency }}</p>
     <div>
-      <input v-model="amount" type="number" :id="product.id" />
+      <input
+        :value="amount"
+        @input="addAmount"
+        type="number"
+        :id="product.id"
+      />
       <span>кг</span>
     </div>
     <button @click="addToCart(product)">В корзину</button>
@@ -31,8 +36,11 @@ export default {
     }),
   },
   methods: {
+    addAmount(e){
+        this.amount=e.target.value
+    },
     addToCart() {
-      this.product.amount = this.amount;
+      this.product.amount = Number(this.amount);
       this.$emit("addProduct", this.product);
       this.amount = 0;
     },
@@ -40,7 +48,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .card-image {
   width: 100%;
 }

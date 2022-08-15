@@ -1,39 +1,22 @@
 <script>
 export default {
-  name: 'Header',
-  props: {
-    cart: Array,
-    required: true,
-    default: {},
-
-    currency: String,
-  },
-  data() {
-    return {
-      cartPrice: 0,
-    };
-  },
-  watch: {
-    cart(cart) {
-      let val = 0;
-      cart.forEach((item) => {
-        val += item.price * item.amount;
-      });
-      this.cartPrice = val;
-    },
-  },
-}
+  name: "Header",
+};
 </script>
 
 <style scoped>
-  .header {
-    padding: 10px;
-    background: #e5e5e5;
-  }
+.header {
+  padding: 10px;
+  background: #e5e5e5;
+}
 </style>
 
 <template>
   <div class="header">
-    <h3>Товаров в корзине на: {{ cartPrice }} {{ currency }}</h3>
+    <h3>
+    <!-- вызов количество суммы и валюты и округление суммы-->
+      Товаров в корзине на: {{ Math.round($store.state.cartPrice[0]) }}
+      {{ $store.state.currency }}
+    </h3>
   </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header :cart="cart" :currency="currency"></Header>
-    <List :currency="currency"/>
-    <Cart :cart="cart"/>
+    <Header></Header>
+    <List/>
+    <Cart/>
   </div>
 </template>
 
