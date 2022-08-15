@@ -1,32 +1,39 @@
 <script>
-import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
-
 export default {
-  name: "Header",
+  name: 'Header',
+  props: {
+    cart: Array,
+    required: true,
+    default: {},
+
+    currency: String,
+  },
   data() {
-    return {};
+    return {
+      cartPrice: 0,
+    };
   },
   watch: {
-    ...mapState({
-      currency: (state) => state.currency,
-      cart: (state) => state.cart,
-    }),
+    cart(cart) {
+      let val = 0;
+      cart.forEach((item) => {
+        val += item.price * item.amount;
+      });
+      this.cartPrice = val;
+    },
   },
-};
+}
 </script>
 
 <style scoped>
-.header {
-  padding: 10px;
-  background: #e5e5e5;
-}
+  .header {
+    padding: 10px;
+    background: #e5e5e5;
+  }
 </style>
 
 <template>
   <div class="header">
-    <h3>
-      Товаров в корзине на: {{ Math.round($store.state.cartPrice[0]) }}
-      {{ currency }}
-    </h3>
+    <h3>Товаров в корзине на: {{ cartPrice }} {{ currency }}</h3>
   </div>
 </template>
